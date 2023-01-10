@@ -1,0 +1,10 @@
+.nav__bar {
+    background-color: darkslateblue;
+    color: white;
+    display:flex;
+    align-items: right;
+    justify-content: center;
+    margin: auto auto;
+    width: 100%; 
+
+}
