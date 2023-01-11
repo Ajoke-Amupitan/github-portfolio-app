@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import './Home.css';
+import { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+import "./Home.css";
 
-const Home = () => {   
-  const [user, setUser] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [showViewMore, setShowViewMore] = useState("")
+const Home = () => {
+  const [user, setUser] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showViewMore, setShowViewMore] = useState("");
 
   const fetchRepos = () => {
     fetch(`https://api.github.com/users/Ajoke-Amupitan/repos?per_page=6&page=${currentPage}`)
@@ -22,23 +22,25 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchRepos()
-  }, [currentPage]) 
+  fetchRepos()
+   }, [currentPage]) 
 
   const viewMore = () => {
-    setCurrentPage(currentPage + 1)
-  }
+  setCurrentPage(currentPage + 1)
+   }
 
     const userElements = user.map((userElement) => {
         return (
             <div className="repo-card" key={userElement.id}>
-                <Link to={`/repodetails/${userElement.name}`}><h2 className="repo-name">{userElement.name}</h2></Link>
+                {/* <Link to={`/repodetails/${userElement.name}`}><h2 className="repo-name">{userElement.name}</h2></Link> */}
+                <p className="repodetails">Repository: {userElement.name}</p>
                 <p className="language">Langauge: {userElement.language === null ? "none" : userElement.language}</p>
                 <p className="date">Start date & time: {userElement.created_at}</p>
                 <p className="visibility">Visibility: {userElement.visibility}</p>
             </div>
         )
     })
+    console.log(userElements);
 
     return (
       <>
